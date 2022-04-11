@@ -34,4 +34,4 @@ catch(Exception $e){
     echo 'Message: ' .$e->getMessage();
 }
 $web_driver->quit();
-?> 
+?>
