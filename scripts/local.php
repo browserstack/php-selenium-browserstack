@@ -24,7 +24,7 @@
         "name" => "BStack-[Php] Sample Test", // test name
         "build" => "BStack Build Number 1" // CI/CD job or build name
     );
-    $web_driver = RemoteWebDriver::create("https://USERNAME:ACCESS_KEY@hub-cloud.browserstack.com/wd/hub",$caps);
+    $web_driver = RemoteWebDriver::create("https://USERNAME:ACCESS_KEY@hub-cloud.browserstack.com/wd/hub", $caps);
     try{
         $web_driver->get("http://bs-local.com:45691/check");
         $body_text = $web_driver->wait(10000)->until(WebDriverExpectedCondition::presenceOfElementLocated(WebDriverBy::cssSelector("body")))->getText();
