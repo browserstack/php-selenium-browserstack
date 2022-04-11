@@ -2,7 +2,7 @@
 # php-selenium-browserstack
 
 ## Prerequisites 
-1. php and composer should be installed in your system
+1. `php` and `composer` should be installed in your system
 2. Go to the directory where you have your test scripts and run the command below:
 ```
   composer require php-webdriver/webdriver
