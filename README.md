@@ -35,7 +35,7 @@ $caps = array(
     "build" => "BStack Build Number 1" // CI/CD job or build name
 );
 // IMP: Use your browserstack username and accesskey
-$web_driver = RemoteWebDriver::create("https://USERNAME:ACCESS_KEY@hub-cloud.browserstack.com/wd/hub",$caps);
+$web_driver = RemoteWebDriver::create("https://USERNAME:ACCESS_KEY@hub-cloud.browserstack.com/wd/hub", $caps);
 ```
 
 3. Run tests
