@@ -23,7 +23,7 @@
   # Test the installation by running a simple test file, check out example.php in the main repository.
 ```
 2. Configure test capabilities
-(To run single test, navigate to ./scripts/single/php)
+(To run single test, navigate to ./scripts/single.php)
 
 ```php
 $caps = array(
