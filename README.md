@@ -39,20 +39,14 @@ $caps = array(
 $web_driver = RemoteWebDriver::create("https://USERNAME:ACCESS_KEY@hub-cloud.browserstack.com/wd/hub", $caps);
 ```
 
-3. Run tests
-Single test
+## To run tests
+---
+### Single test
 ```
 php single.php
 ```
 
-Local test
-Along with step-2 also use your Accesskey to bs_loca_args
-```php
-# In file ./scripts/local.php
-# You can also set an environment variable - "BROWSERSTACK_ACCESS_KEY".
-$bs_local_args = array("key" => "ACCESS_KEY");
+### Local test 
 ```
-
-```
-php single.php
+php local.php
 ```
