@@ -40,11 +40,17 @@ $web_driver = RemoteWebDriver::create("https://USERNAME:ACCESS_KEY@hub-cloud.bro
 ## To run tests
 ---
 ### Single test
+Run single test session by running.
 ```
 php single.php
 ```
 
-### Local test 
+### Local test
+Run local test session by running.
+```php
+# Update "BROWSERSTACK_ACCESS_KEY" in bs_local.
+$bs_local_args = array("key" => "ACCESS_KEY");
+```
 ```
 php local.php
 ```
