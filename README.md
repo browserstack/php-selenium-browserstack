@@ -28,12 +28,16 @@
 
 ```php
 $caps = array(
-    "browserName" => "iPhone",
-    "device" => "iPhone 11",
-    "realMobile" => "true",
-    "os_version" => "14.0",
-    "name" => "BStack-[Php] Sample Test", // test name
-    "build" => "BStack Build Number 1" // CI/CD job or build name
+	'bstack:options' => array(
+		"os" => "OS X",
+		"osVersion" => "Sierra",
+		"buildName" => "Final-Snippet-Test",
+		"sessionName" => "Selenium-4 PHP snippet test",
+		"local" => "false",
+		"seleniumVersion" => "4.0.0",
+	),
+	"browserName" => "Chrome",
+	"browserVersion" => "latest",
 );
 // IMP: Use your browserstack username and accesskey
 $web_driver = RemoteWebDriver::create("https://USERNAME:ACCESS_KEY@hub-cloud.browserstack.com/wd/hub", $caps);
@@ -42,11 +46,16 @@ $web_driver = RemoteWebDriver::create("https://USERNAME:ACCESS_KEY@hub-cloud.bro
 ## To run tests
 ---
 ### Single test
+Run single test session by running.
 ```
 php single.php
 ```
-
-### Local test 
+### Local test
+Run local test session by running.
+```php
+# Update "BROWSERSTACK_ACCESS_KEY" in bs_local.
+$bs_local_args = array("key" => "ACCESS_KEY");
+```
 ```
 php local.php
 ```
