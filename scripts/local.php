@@ -5,16 +5,6 @@
     use Facebook\WebDriver\WebDriverExpectedCondition;
     use BrowserStack\Local;
 
-    # Creates an instance of Local
-    $bs_local = new Local();
-  
-    # You can also set an environment variable - "BROWSERSTACK_ACCESS_KEY".
-    $bs_local_args = array("key" => "ACCESS_KEY");
-    # Starts the Local instance with the required arguments
-    $bs_local->start($bs_local_args);
-
-    # Check if BrowserStack local instance is running
-    echo $bs_local->isRunning();
     $caps = array(
         'bstack:options' => array(
             "os" => "OS X",
@@ -27,7 +17,21 @@
         "browserName" => "Chrome",
         "browserVersion" => "latest",
     );
-    $web_driver = RemoteWebDriver::create("https://USERNAME:ACCESS_KEY@hub-cloud.browserstack.com/wd/hub",$caps);
+    $BROWSERSTACK_USERNAME = "BROWSERSTACK_USERNAME";
+    $BROWSERSTACK_ACCESS_KEY = "BROWSERSTACK_ACCESS_KEY";
+
+    # Creates an instance of Local
+    $bs_local = new Local();
+
+    # You can also set an environment variable - "BROWSERSTACK_ACCESS_KEY".
+    $bs_local_args = array("key" => $BROWSERSTACK_ACCESS_KEY);
+    # Starts the Local instance with the required arguments
+    $bs_local->start($bs_local_args);
+
+    # Check if BrowserStack local instance is running
+    echo $bs_local->isRunning();
+
+    $web_driver = RemoteWebDriver::create("https://$BROWSERSTACK_USERNAME:$BROWSERSTACK_ACCESS_KEY@hub-cloud.browserstack.com/wd/hub",$caps);
     try{
         $web_driver->get("http://bs-local.com:45691/check");
         $body_text = $web_driver->wait(10000)->until(WebDriverExpectedCondition::presenceOfElementLocated(WebDriverBy::cssSelector("body")))->getText();

@@ -15,7 +15,11 @@ $caps = array(
 	"browserName" => "Chrome",
 	"browserVersion" => "latest",
 );
-$web_driver = RemoteWebDriver::create("https://USERNAME:ACCESS_KEY@hub-cloud.browserstack.com/wd/hub",$caps);
+
+$BROWSERSTACK_USERNAME = "BROWSERSTACK_USERNAME";
+$BROWSERSTACK_ACCESS_KEY = "BROWSERSTACK_ACCESS_KEY";
+
+$web_driver = RemoteWebDriver::create("https://$BROWSERSTACK_USERNAME:$BROWSERSTACK_ACCESS_KEY@hub-cloud.browserstack.com/wd/hub",$caps);
 try{
     $web_driver->get("https://bstackdemo.com/");
     $web_driver->wait(10000)->until(WebDriverExpectedCondition::titleIs("StackDemo"));

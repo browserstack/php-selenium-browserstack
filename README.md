@@ -39,8 +39,10 @@ $caps = array(
 	"browserName" => "Chrome",
 	"browserVersion" => "latest",
 );
-// IMP: Use your browserstack username and accesskey
-$web_driver = RemoteWebDriver::create("https://USERNAME:ACCESS_KEY@hub-cloud.browserstack.com/wd/hub", $caps);
+
+// Set you credentails
+$BROWSERSTACK_USERNAME = "BROWSERSTACK_USERNAME";
+$BROWSERSTACK_ACCESS_KEY = "BROWSERSTACK_ACCESS_KEY";
 ```
 
 ## To run tests
