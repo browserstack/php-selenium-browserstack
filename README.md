@@ -1,7 +1,5 @@
 # php-selenium-browserstack
 
-# php-selenium-browserstack
-
 ## Prerequisites 
 1. `php` and `composer` should be installed in your system
 2. Go to the directory where you have your test scripts and run the command below:
@@ -46,7 +44,6 @@ $BROWSERSTACK_ACCESS_KEY = "BROWSERSTACK_ACCESS_KEY";
 ```
 
 ## To run tests
----
 ### Single test
 Run single test session by running.
 ```
