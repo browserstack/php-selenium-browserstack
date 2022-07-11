@@ -7,8 +7,8 @@ $caps = array(
 	'bstack:options' => array(
 		"os" => "OS X",
 		"osVersion" => "Sierra",
-        	"buildName" => "BStack Build Number 1",
-        	"sessionName" => "BStack-[Php] Sample Test",
+        "buildName" => "BStack Build Number 1",
+        "sessionName" => "BStack-[Php] Sample Test",
 		"local" => "false",
 		"seleniumVersion" => "4.0.0",
 	),
