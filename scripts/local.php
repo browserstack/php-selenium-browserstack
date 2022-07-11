@@ -9,8 +9,8 @@
         'bstack:options' => array(
             "os" => "OS X",
             "osVersion" => "Sierra",
-            "buildName" => "Final-Snippet-Test",
-            "sessionName" => "Selenium-4 PHP snippet test",
+            "buildName" => "BStack Build Number 1",
+            "sessionName" => "BStack-[Php] Sample Test",
             "local" => "true",
             "seleniumVersion" => "4.0.0",
         ),
