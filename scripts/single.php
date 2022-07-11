@@ -4,12 +4,16 @@ use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\WebDriverBy;
 use Facebook\WebDriver\WebDriverExpectedCondition;
 $caps = array(
-    "browserName" => "iPhone",
-    "device" => "iPhone 11",
-    "realMobile" => "true",
-    "os_version" => "14.0",
-    "name" => "BStack-[Php] Sample Test", // test name
-    "build" => "BStack Build Number 1" // CI/CD job or build name
+	'bstack:options' => array(
+		"os" => "OS X",
+		"osVersion" => "Sierra",
+		"buildName" => "Final-Snippet-Test",
+		"sessionName" => "Selenium-4 PHP snippet test",
+		"local" => "false",
+		"seleniumVersion" => "4.0.0",
+	),
+	"browserName" => "Chrome",
+	"browserVersion" => "latest",
 );
 
 $BROWSERSTACK_USERNAME = "BROWSERSTACK_USERNAME";
