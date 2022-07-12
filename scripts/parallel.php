@@ -69,7 +69,6 @@
             "browserName" => "Chrome",
             "browserVersion" => "latest",
         ),
-​
     );
     foreach ( $caps as $cap ) {
         executeTestCase($cap);
