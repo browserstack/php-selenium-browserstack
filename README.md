@@ -49,6 +49,11 @@ Run single test session by running.
 ```
 php single.php
 ```
+### Parallel test
+Run parallel test session by running.
+```
+php parallel.php
+```
 ### Local test
 Run local test session by running.
 ```php
