@@ -1,5 +1,6 @@
 <?php
     require_once("vendor/autoload.php");
+    require_once('config.php');
     use Facebook\WebDriver\Remote\RemoteWebDriver;
     use Facebook\WebDriver\WebDriverBy;
     use Facebook\WebDriver\WebDriverExpectedCondition;
@@ -8,30 +9,38 @@
     $caps = array(
         'bstack:options' => array(
             "os" => "OS X",
-            "osVersion" => "Sierra",
-            "buildName" => "BStack Build Number 1",
-            "sessionName" => "BStack-[Php] Sample Test",
+            "osVersion" => "Big Sur",
+            "buildName" => "browserstack-build-1",
+            "sessionName" => "BStack [php] Local test",
             "local" => "true",
             "seleniumVersion" => "4.0.0",
         ),
         "browserName" => "Chrome",
         "browserVersion" => "latest",
     );
-    $BROWSERSTACK_USERNAME = "BROWSERSTACK_USERNAME";
-    $BROWSERSTACK_ACCESS_KEY = "BROWSERSTACK_ACCESS_KEY";
+
+    # read credentials from environment variables
+    $USERNAME = getenv('BROWSERSTACK_USERNAME');
+    $ACCESS_KEY = getenv('BROWSERSTACK_ACCESS_KEY');
+
+    # if not provided in env vars, read credentials from config file
+    if (!isset($USERNAME)) {
+        $USERNAME = constant('BROWSERSTACK_USERNAME');
+    }
+    if (!isset($USERNAME)) {
+        $ACCESS_KEY = constant('BROWSERSTACK_ACCESS_KEY');
+    }
 
     # Creates an instance of Local
     $bs_local = new Local();
-
-    # You can also set an environment variable - "BROWSERSTACK_ACCESS_KEY".
-    $bs_local_args = array("key" => $BROWSERSTACK_ACCESS_KEY);
+    $bs_local_args = array("key" => $ACCESS_KEY);
     # Starts the Local instance with the required arguments
     $bs_local->start($bs_local_args);
 
     # Check if BrowserStack local instance is running
     echo $bs_local->isRunning();
 
-    $web_driver = RemoteWebDriver::create("https://$BROWSERSTACK_USERNAME:$BROWSERSTACK_ACCESS_KEY@hub-cloud.browserstack.com/wd/hub",$caps);
+    $web_driver = RemoteWebDriver::create("https://$USERNAME:$ACCESS_KEY@hub.browserstack.com/wd/hub", $caps);
     try{
         $web_driver->get("http://bs-local.com:45691/check");
         $body_text = $web_driver->wait(10000)->until(WebDriverExpectedCondition::presenceOfElementLocated(WebDriverBy::cssSelector("body")))->getText();
@@ -46,6 +55,6 @@
         echo 'Message: ' .$e->getMessage();
     }
     $web_driver->quit();
-      # Stop the Local instance
+    # Stop the Local instance
     $bs_local->stop();
 ?>
