@@ -25,7 +25,7 @@
     if (!isset($USERNAME)) {
         $USERNAME = constant('BROWSERSTACK_USERNAME');
     }
-    if (!isset($USERNAME)) {
+    if (!isset($ACCESS_KEY)) {
         $ACCESS_KEY = constant('BROWSERSTACK_ACCESS_KEY');
     }
 
