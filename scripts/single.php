@@ -1,5 +1,6 @@
 <?php
     require_once('vendor/autoload.php');
+    require_once('config.php');
     use Facebook\WebDriver\Remote\RemoteWebDriver;
     use Facebook\WebDriver\WebDriverBy;
     use Facebook\WebDriver\WebDriverExpectedCondition;
@@ -7,23 +8,31 @@
     $caps = array(
         'bstack:options' => array(
             "os" => "OS X",
-            "osVersion" => "Sierra",
-            "buildName" => "BStack Build Number 1",
-            "sessionName" => "BStack-[Php] Sample Test",
-            "local" => "false",
+            "osVersion" => "Big Sur",
+            "buildName" => "browserstack-build-1",
+            "sessionName" => "BStack [php] Sample test",
             "seleniumVersion" => "4.0.0",
         ),
         "browserName" => "Chrome",
         "browserVersion" => "latest",
     );
 
-    $BROWSERSTACK_USERNAME = "BROWSERSTACK_USERNAME";
-    $BROWSERSTACK_ACCESS_KEY = "BROWSERSTACK_ACCESS_KEY";
+    # read credentials from environment variables
+    $USERNAME = getenv('BROWSERSTACK_USERNAME');
+    $ACCESS_KEY = getenv('BROWSERSTACK_ACCESS_KEY');
 
-    $web_driver = RemoteWebDriver::create("https://$BROWSERSTACK_USERNAME:$BROWSERSTACK_ACCESS_KEY@hub-cloud.browserstack.com/wd/hub",$caps);
+    # if not provided in env vars, read credentials from config file
+    if (!isset($USERNAME)) {
+        $USERNAME = constant('BROWSERSTACK_USERNAME');
+    }
+    if (!isset($ACCESS_KEY)) {
+        $ACCESS_KEY = constant('BROWSERSTACK_ACCESS_KEY');
+    }
+
+    $web_driver = RemoteWebDriver::create("https://$USERNAME:$ACCESS_KEY@hub.browserstack.com/wd/hub", $caps);
     try{
-        $web_driver->get("https://bstackdemo.com/");
-        $web_driver->wait(10000)->until(WebDriverExpectedCondition::titleIs("StackDemo"));
+        $web_driver->get('https://bstackdemo.com/');
+        $web_driver->wait(10000)->until(WebDriverExpectedCondition::titleIs('StackDemo'));
         # getting text of the product
         $product_on_page = $web_driver->wait(10000)->until(WebDriverExpectedCondition::presenceOfElementLocated(WebDriverBy::XPath("//*[@id='1']/p")))->getText();
         # clicking the 'Add to cart' button
@@ -33,7 +42,7 @@
         # getting text of the product
         $product_in_cart = $web_driver->wait(10000)->until(WebDriverExpectedCondition::presenceOfElementLocated(WebDriverBy::XPath("//*[@id='__next']/div/div/div[2]/div[2]/div[2]/div/div[3]/p[1]")))->getText();
         # Setting the status of test as 'passed' or 'failed' based on the condition; if title of the web page starts with 'BrowserStack'
-        if ($product_on_page == $product_in_cart){
+        if ($product_on_page == $product_in_cart) {
             $web_driver->executeScript('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed", "reason": "Product has been successfully added to the cart!"}}' );
         }  else {
             $web_driver->executeScript('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "Failed to add product to the cart or some elements might have failed to load."}}');

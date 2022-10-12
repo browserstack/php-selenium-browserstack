@@ -1,16 +1,32 @@
 <?php
-   require_once('vendor/autoload.php');
-   use Facebook\WebDriver\Remote\RemoteWebDriver;
-   use Facebook\WebDriver\WebDriverBy;
-   use Facebook\WebDriver\WebDriverExpectedCondition;
+    require_once('vendor/autoload.php');
+    require_once('config.php');
+    use Facebook\WebDriver\Remote\RemoteWebDriver;
+    use Facebook\WebDriver\WebDriverBy;
+    use Facebook\WebDriver\WebDriverExpectedCondition;
+
+    # read credentials from environment variables
+    $USERNAME = getenv('BROWSERSTACK_USERNAME');
+    $ACCESS_KEY = getenv('BROWSERSTACK_ACCESS_KEY');
+
+    # if not provided in env vars, read credentials from config file
+    if (!isset($USERNAME)) {
+        $USERNAME = constant('BROWSERSTACK_USERNAME');
+    }
+    if (!isset($ACCESS_KEY)) {
+        $ACCESS_KEY = constant('BROWSERSTACK_ACCESS_KEY');
+    }
+
     function executeTestCase($caps) {
+        global $USERNAME, $ACCESS_KEY;
+
         $web_driver = RemoteWebDriver::create(
-            "https://$BROWSERSTACK_USERNAME:$BROWSERSTACK_ACCESS_KEY@hub-cloud.browserstack.com/wd/hub",
+            "https://$USERNAME:$ACCESS_KEY@hub.browserstack.com/wd/hub",
             $caps
         );
         try{
-            $web_driver->get("https://bstackdemo.com/");
-            $web_driver->wait(10000)->until(WebDriverExpectedCondition::titleIs("StackDemo"));
+            $web_driver->get('https://bstackdemo.com/');
+            $web_driver->wait(10000)->until(WebDriverExpectedCondition::titleIs('StackDemo'));
             # getting text of the product
             $product_on_page = $web_driver->wait(10000)->until(WebDriverExpectedCondition::presenceOfElementLocated(WebDriverBy::XPath("//*[@id='1']/p")))->getText();
             # clicking the 'Add to cart' button
@@ -35,10 +51,9 @@
         array(
             'bstack:options' => array(
                 "os" => "OS X",
-                "osVersion" => "Sierra",
-                "buildName" => "BStack Build Number 1",
-                "sessionName" => "Thread 1",
-                "local" => "false",
+                "osVersion" => "Big Sur",
+                "buildName" => "browserstack-build-1",
+                "sessionName" => "BStack [php] Parallel 1",
                 "seleniumVersion" => "4.0.0",
             ),
             "browserName" => "Chrome",
@@ -46,11 +61,10 @@
         ),
         array(
             'bstack:options' => array(
-                "os" => "OS X",
-                "osVersion" => "Sierra",
-                "buildName" => "BStack Build Number 1",
-                "sessionName" => "Thread 2",
-                "local" => "false",
+                "os" => "Windows",
+                "osVersion" => "10",
+                "buildName" => "browserstack-build-1",
+                "sessionName" => "BStack [php] Parallel 2",
                 "seleniumVersion" => "4.0.0",
             ),
             "browserName" => "Firefox",
@@ -60,10 +74,8 @@
             'bstack:options' => array(
                 "osVersion" => "10.0",
                 "deviceName" => "Samsung Galaxy S20",
-                "realMobile" => "true",
-                "buildName" => "BStack Build Number 1",
-                "sessionName" => "Thread 3",
-                "local" => "false",
+                "buildName" => "browserstack-build-1",
+                "sessionName" => "BStack [php] Parallel 3",
                 "seleniumVersion" => "4.0.0",
             ),
             "browserName" => "Chrome",

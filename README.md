@@ -1,65 +1,49 @@
 # php-selenium-browserstack
+Code samples for php selenium tests on browserstack.
 
 ## Prerequisites 
-1. `php` and `composer` should be installed in your system
-2. Go to the directory where you have your test scripts and run the command below:
+1. `php` and `composer` should be installed in your system.
+* If you don't already use Composer, you can download the composer.phar binary:
 ```
-  composer require php-webdriver/webdriver
+curl -sS https://getcomposer.org/installer | php
 ```
 
 ## Steps to run test sessions
-1. Install dependencies
+1. Clone the repo
 ```
-  # If you don't already use Composer, you can download the composer.phar binary:
-  curl -sS https://getcomposer.org/installer | php
-
-  # Include the binding:
-  php composer.phar require browserstack/local:dev-master
-
-  # Install all the dependencies:
+git clone https://github.com/browserstack/php-selenium-browserstack.git
+```
+2. Install dependencies
+```
   php composer.phar install
-
-  # Test the installation by running a simple test file, check out example.php in the main repository.
 ```
-2. Configure test capabilities
-(To run single test, navigate to ./scripts/single.php)
+3. Set your credentials in the `config.php` file. Update `YOUR_USERNAME` and `YOUR_ACCESS_KEY` with your username and access key.
+You can also set them as environment variables `BROWSERSTACK_USERNAME` and `BROWSERSTACK_ACCESS_KEY`, as follows:
+  * For Unix-like or Mac machines:
+  ```
+  export BROWSERSTACK_USERNAME=<browserstack-username> &&
+  export BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
+  ```
 
-```php
-$caps = array(
-	'bstack:options' => array(
-		"os" => "OS X",
-		"osVersion" => "Sierra",
-		"buildName" => "Final-Snippet-Test",
-		"sessionName" => "Selenium-4 PHP snippet test",
-		"local" => "false",
-		"seleniumVersion" => "4.0.0",
-	),
-	"browserName" => "Chrome",
-	"browserVersion" => "latest",
-);
-
-// Set you credentails
-$BROWSERSTACK_USERNAME = "BROWSERSTACK_USERNAME";
-$BROWSERSTACK_ACCESS_KEY = "BROWSERSTACK_ACCESS_KEY";
-```
+  * For Windows:
+  ```
+  set BROWSERSTACK_USERNAME=<browserstack-username>
+  set BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
+  ```
 
 ## To run tests
 ### Single test
 Run single test session by running.
 ```
-php single.php
+php scripts/single.php
 ```
 ### Parallel test
 Run parallel test session by running.
 ```
-php parallel.php
+php scripts/parallel.php
 ```
 ### Local test
 Run local test session by running.
-```php
-# Update "BROWSERSTACK_ACCESS_KEY" in bs_local.
-$bs_local_args = array("key" => "ACCESS_KEY");
 ```
-```
-php local.php
+php scripts/local.php
 ```
