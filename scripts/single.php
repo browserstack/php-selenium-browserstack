@@ -52,3 +52,4 @@
         echo 'Message: ' .$e->getMessage();
     }
     $web_driver->quit();
+?>
