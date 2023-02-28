@@ -1,4 +1,0 @@
-<?php
-    define('BROWSERSTACK_USERNAME', 'YOUR_USERNAME');
-    define('BROWSERSTACK_ACCESS_KEY', 'YOUR_ACCESS_KEY');
-?>

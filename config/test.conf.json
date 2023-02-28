@@ -1,0 +1,35 @@
+{
+  "user": "BROWSERSTACK_USERNAME",
+  "key": "BROWSERSTACK_ACCESS_KEY",
+
+  "capabilities": [{
+    "browserName": "chrome",
+    "browserVersion": "latest",
+    "bstack:options": {
+      "os": "OS X",
+      "osVersion": "Monterey",
+      "buildName": "browserstack-build-1",
+      "sessionName": "BStack php/phpunit chrome",
+      "local": true
+    }
+  }, {
+    "browserName": "edge",
+    "browserVersion": "latest",
+    "bstack:options": {
+      "os": "Windows",
+      "osVersion": "11",
+      "buildName": "browserstack-build-1",
+      "sessionName": "BStack php/phpunit edge",
+      "local": true
+    }
+  }, {
+    "browserName": "chrome",
+    "bstack:options": {
+      "osVersion": "12.0",
+      "deviceName": "Samsung Galaxy S22 Ultra",
+      "buildName": "browserstack-build-1",
+      "sessionName": "BStack php/phpunit android",
+      "local": true
+    }
+  }]
+}
