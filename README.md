@@ -1,49 +1,57 @@
 # php-selenium-browserstack
-Code samples for php selenium tests on browserstack.
 
-## Prerequisites 
-1. `php` and `composer` should be installed in your system.
-* If you don't already use Composer, you can download the composer.phar binary:
-```
-curl -sS https://getcomposer.org/installer | php
-```
+This branch contains php tests using [PHPUnit](https://github.com/sebastianbergmann/phpunit).
 
-## Steps to run test sessions
-1. Clone the repo
-```
-git clone https://github.com/browserstack/php-selenium-browserstack.git
-```
-2. Install dependencies
-```
-  php composer.phar install
-```
-3. Set your credentials in the `config.php` file. Update `YOUR_USERNAME` and `YOUR_ACCESS_KEY` with your username and access key.
-You can also set them as environment variables `BROWSERSTACK_USERNAME` and `BROWSERSTACK_ACCESS_KEY`, as follows:
-  * For Unix-like or Mac machines:
+## Prerequisites
+
+1. Make sure that you have **PHP** installed on your system. You can download and install **PHP** using following commands in the terminal:
+
+  - **MacOS:**
+    ```bash
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    brew install php
+    ```
+  - **Windows:**
+    ```bash
+    sudo apt-get install curl libcurl3 libcurl3-dev php
+    ```
+    **Note:** For **Windows**, you can download **PHP** from [here](http://windows.php.net/download/). Also, refer to this [documentation](http://php.net/manual/en/install.windows.php) for ensuring the accessibility of PHP through the Command Prompt.
+
+2. Download **composer** in the project directory ([Linux/MacOS](https://getcomposer.org/download/), [Windows](https://getcomposer.org/doc/00-intro.md#installation-windows)).
+
+    **Note:** To use the **composer** command directly, it either should have been downloaded in the project directory or should be accessible globally which can be done by the command below:
+
+    ```bash
+    mv composer.phar /usr/local/bin/composer
+    ```
+
+## Setup
+
+- Clone the repo
+- Install dependencies using: `composer install`
+- Update `test.conf.json` file inside the `config/` directory with your [BrowserStack Username and Access Key](https://www.browserstack.com/accounts/settings)
+
+## Running your tests
+
+- To run tests, run: `composer test`
+- To run local tests, run: `composer local`
+
+Understand how many parallel sessions you need by using our [Parallel Test Calculator](https://www.browserstack.com/automate/parallel-calculator?ref=github)
+
+## Notes
+
+- You can view your test results on the [BrowserStack Automate dashboard](https://www.browserstack.com/automate)
+- To test on a different set of browsers, check out our [platform configurator](https://www.browserstack.com/automate/php#setting-os-and-browser)
+- You can export the environment variables for the Username and Access Key of your BrowserStack account
+
   ```
   export BROWSERSTACK_USERNAME=<browserstack-username> &&
   export BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
   ```
 
-  * For Windows:
-  ```
-  set BROWSERSTACK_USERNAME=<browserstack-username>
-  set BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
-  ```
+## Additional Resources
 
-## To run tests
-### Single test
-Run single test session by running.
-```
-php scripts/single.php
-```
-### Parallel test
-Run parallel test session by running.
-```
-php scripts/parallel.php
-```
-### Local test
-Run local test session by running.
-```
-php scripts/local.php
-```
+- [Documentation for writing Automate test scripts in PHP](https://www.browserstack.com/automate/php)
+- [Customizing your tests on BrowserStack](https://www.browserstack.com/automate/capabilities)
+- [Browsers & mobile devices for selenium testing on BrowserStack](https://www.browserstack.com/list-of-browsers-and-platforms?product=automate)
+- [Using REST API to access information about your tests via the command-line interface](https://www.browserstack.com/automate/rest-api)
