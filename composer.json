@@ -1,6 +1,14 @@
 {
     "require": {
-        "browserstack/browserstack-local": "^1.1",
+        "browserstack/browserstack-local": "dev-master",
+        "phpunit/phpunit-selenium": "9.0.1",
         "php-webdriver/webdriver": "^1.12"
+    },
+    "scripts": {
+      "sample-local-test": "CONFIG_FILE=config/test.conf.json TEST_FILE=tests/LocalTest.php /usr/bin/env php lib/runner.php",
+      "sample-test": "CONFIG_FILE=config/test.conf.json TEST_FILE=tests/Test.php /usr/bin/env php lib/runner.php"
+    },
+    "autoload": {
+      "classmap": ["lib/"]
     }
 }
