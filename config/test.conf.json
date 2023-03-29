@@ -10,7 +10,7 @@
       "osVersion": "Monterey",
       "buildName": "browserstack-build-1",
       "sessionName": "BStack php/phpunit chrome",
-      "source": "php:sample-main:v1.1",
+      "source": "php:sample-main:v1.0",
       "local": true
     }
   }, {
@@ -21,7 +21,7 @@
       "osVersion": "11",
       "buildName": "browserstack-build-1",
       "sessionName": "BStack php/phpunit edge",
-      "source": "php:sample-main:v1.1",
+      "source": "php:sample-main:v1.0",
       "local": true
     }
   }, {
@@ -31,7 +31,7 @@
       "deviceName": "Samsung Galaxy S22 Ultra",
       "buildName": "browserstack-build-1",
       "sessionName": "BStack php/phpunit android",
-      "source": "php:sample-main:v1.1",
+      "source": "php:sample-main:v1.0",
       "local": true
     }
   }]
