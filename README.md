@@ -33,8 +33,8 @@ This branch is using phpunit
 * Update `test.conf.json` file inside the `config/` directory with your [BrowserStack Username and Access Key](https://www.browserstack.com/accounts/settings)
 
 ## Running your tests
-* To run tests, run: `composer sample-test`
-* To run local tests, run: `composer sample-local-test`
+* To run tests, run: `composer test`
+* To run local tests, run: `composer local`
 
  Understand how many parallel sessions you need by using our [Parallel Test Calculator](https://www.browserstack.com/automate/parallel-calculator?ref=github)
 
